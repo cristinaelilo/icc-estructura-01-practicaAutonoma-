@@ -137,6 +137,8 @@ public class MetodosOrdenamiento {
 
     // Método de inserción con errores
     // Error encontrado:
+    //Error encontrado en la linea 148 donde i >= 0 para menejar el primer el elemento de la matriz.
+    //y cambiar en arreglo[i] > para mover elementos que son mayores. 
     public int[] insercionPrimero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -154,7 +156,8 @@ public class MetodosOrdenamiento {
     }
 
     // Método de inserción con errores
-    // Error encontrado:
+    // Error encontrado: En la liena 168,169,170
+    // Mueve los elementos de arreglo[0..i] que son mayores que el valor actual
     public int[] insercionSegundo(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -162,8 +165,9 @@ public class MetodosOrdenamiento {
             int actual = arreglo[j];
 
             int i = j - 1;
-            for (; j >= 0 && arreglo[j] > actual; j--) {
-                arreglo[j + 1] = arreglo[j];
+            while (i >= 0 && arreglo[i] > actual) {
+                arreglo[i + 1] = arreglo[i];
+                i--;
             }
             arreglo[i + 1] = actual;
         }
@@ -172,6 +176,7 @@ public class MetodosOrdenamiento {
 
     // Método de inserción con errores
     // Error encontrado:
+    //
     public int[] insercionTercero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -179,13 +184,13 @@ public class MetodosOrdenamiento {
             int key = arreglo[j];
             int i = j;
 
-            while (i > 0 && arreglo[i] < key) {
-                arreglo[i + 1] = arreglo[i];
-                i++;
+            while (i > 0 && arreglo[i-1] > key) {
+                arreglo[i] = arreglo[i-1];
+                i--;
             }
-            arreglo[i + 1] = key;
+            arreglo[i] = key;
         }
-        return new int[] { 15, 34, 1, 2, 5, 6, 7, 10 };
+        return arreglo;
     }
 
 }
